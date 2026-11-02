@@ -1,0 +1,332 @@
+title: HoneyTabs | Event management app for organizers
+ogtitle: HoneyTabs: made for the busy bee
+desc: HoneyTabs keeps your sponsors, to-dos, crew, costs and files in one place, so your whole team knows what's next. Coming soon to the App Store and Google Play.
+path: /
+out: index.html
+---
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill reveal"><picture><source srcset="/assets/img/app-icon-128.avif" type="image/avif"><source srcset="/assets/img/app-icon-128.webp" type="image/webp"><img src="/assets/img/app-icon-128.png" alt="" width="26" height="26"></picture>Coming soon to the App Store and Google Play</span>
+      <h1 class="reveal" style="--d:.05s">Every part of your event, <em>in one place.</em></h1>
+      <p class="tagline reveal" style="--d:.1s">Made for the busy bee</p>
+      <p class="lead reveal" style="--d:.15s">HoneyTabs keeps your sponsors, to-dos, crew, costs and files together, so your whole team knows what's next. Less chasing. Fewer spreadsheets. More time to run a great event.</p>
+      <div class="hero-actions reveal" style="--d:.2s">
+        <a class="btn" href="mailto:{{email}}?subject=HoneyTabs%20early%20access">Get early access {{icon:arrow}}</a>
+        <a class="btn btn--ghost" href="#features">See what it does</a>
+      </div>
+      <div class="stores reveal" style="--d:.25s"><span>{{icon:check}} iPhone</span><span>{{icon:check}} Android</span><span>{{icon:check}} Works with Gmail and Google Calendar</span></div>
+    </div>
+
+    <div class="stage reveal" style="--d:.15s" role="img" aria-label="HoneyTabs app screens: a sponsor contact list, the event dashboard and a production sheet">
+      <div class="phone phone--left" aria-hidden="true"><div class="screen"><div class="ui">
+        <div class="ui-head"><small>Spring Community Festival</small><p class="t">Contacts</p></div>
+        <div class="ui-body" style="padding-top:1cqw">
+          <div class="ui-actions" style="grid-template-columns:repeat(4,auto);justify-content:start;gap:1.6cqw">
+            <div style="background:var(--brown);color:var(--cream);padding:1.4cqw 3cqw;border-radius:99px">All</div><div style="padding:1.4cqw 3cqw;border-radius:99px">Gold</div><div style="padding:1.4cqw 3cqw;border-radius:99px">Silver</div><div style="padding:1.4cqw 3cqw;border-radius:99px">Bronze</div>
+          </div>
+          <div class="ui-card">
+            <div class="ui-task"><span class="av" style="margin:0;--c:#9A5F07">LC</span><span><b>Lakeside Coffee</b><br><small style="color:var(--muted)">Gold · Sold</small></span><em>Gold</em></div>
+            <div class="ui-task"><span class="av" style="margin:0;--c:#552E0B">NB</span><span><b>Northside Bank</b><br><small style="color:var(--muted)">Gold · Pitched</small></span><em>Gold</em></div>
+            <div class="ui-task"><span class="av" style="margin:0;--c:#B4700F">BD</span><span><b>Bright Smile Dental</b><br><small style="color:var(--muted)">Silver · Contacted</small></span><em>Silver</em></div>
+            <div class="ui-task"><span class="av" style="margin:0;--c:#7A5A3C">CP</span><span><b>Corner Print Shop</b><br><small style="color:var(--muted)">Silver · Sold</small></span><em>Silver</em></div>
+            <div class="ui-task"><span class="av" style="margin:0;--c:#A86B2D">PR</span><span><b>Parkview Realty</b><br><small style="color:var(--muted)">Bronze · Prospect</small></span><em>Bronze</em></div>
+            <div class="ui-task"><span class="av" style="margin:0;--c:#6B4A2A">GL</span><span><b>Green Leaf Market</b><br><small style="color:var(--muted)">Bronze · Prospect</small></span><em>Bronze</em></div>
+          </div>
+        </div>
+      </div></div></div>
+
+      <div class="phone phone--main" aria-hidden="true"><div class="screen"><div class="ui">
+        <div class="ui-top"><span class="logo"><img src="/assets/img/honeytabs-mark.svg" alt="" width="24" height="24"></span><span><small>Demo Events Team</small><b>Spring Festival</b></span><svg class="ico bell" aria-hidden="true"><use href="#i-bell"/></svg></div>
+        <div class="ui-body">
+          <div class="ui-card ui-hero"><small>Good morning</small><p class="t">Spring Community Festival</p><div class="meta"><span>Apr 17–18</span><span>Riverside Park</span></div><div class="row"><span>12 of 18 spots sold</span><span>67%</span></div><div class="bar"><i style="--p:67%"></i></div></div>
+          <div class="ui-actions"><div>{{icon:receipt}}Receipt</div><div>{{icon:useradd}}Contact</div><div>{{icon:listcheck}}To-do</div><div>{{icon:mail}}Email</div></div>
+          <div class="ui-stats">
+            <div class="ui-card"><small>Spots left</small><b>6 / 18</b><span>3 sponsor groups</span></div>
+            <div class="ui-card warn"><small>Due today</small><b>4</b><span>2 repeating</span></div>
+            <div class="ui-card"><small>Crew</small><b>24</b><span>6 shifts set</span></div>
+            <div class="ui-card"><small>Spent so far</small><b>$3,308</b><span>from receipts</span></div>
+          </div>
+          <div class="ui-label">Today</div>
+          <div class="ui-card">
+            <div class="ui-task"><span class="chk on"></span><span class="done">Daily site walk-through</span><span class="av" style="--c:#9A5F07">SM</span></div>
+            <div class="ui-task"><span class="chk"></span><span>Confirm stage sound check</span><span class="av" style="--c:#552E0B">JR</span></div>
+          </div>
+        </div>
+        <div class="ui-tabs"><div class="on">{{icon:home}}Home</div><div>{{icon:users}}Contacts</div><div>{{icon:grid}}Spots</div><div>{{icon:calendar}}Calendar</div><div>{{icon:more}}More</div></div>
+      </div></div></div>
+
+      <div class="phone phone--right" aria-hidden="true"><div class="screen"><div class="ui">
+        <div class="ui-head"><small>Saturday, April 18</small><p class="t">Production sheet</p></div>
+        <div class="ui-body" style="padding-top:1cqw">
+          <div class="ui-card">
+            <div class="ui-task"><b style="width:12cqw">7:00</b><span>Vendor load-in</span><em>Crew A</em></div>
+            <div class="ui-task"><b style="width:12cqw">9:00</b><span>Gates open</span><em>All</em></div>
+            <div class="ui-task"><b style="width:12cqw">10:30</b><span>Welcome and sponsor thanks</span><em>Stage</em></div>
+            <div class="ui-task"><b style="width:12cqw">12:00</b><span>Main stage, set 1</span><em>Stage</em></div>
+            <div class="ui-task"><b style="width:12cqw">2:00</b><span>Raffle drawing</span><em>Crew B</em></div>
+            <div class="ui-task"><b style="width:12cqw">5:30</b><span>Teardown</span><em>All</em></div>
+          </div>
+          <div class="toast" style="background:var(--brown)">{{icon:printer}}<span><b>Print production sheet</b>Send it to any printer nearby</span></div>
+        </div>
+      </div></div></div>
+
+      <div class="float float--a"><span class="badge">{{icon:send}}</span><span><strong>Spot sold: Lakeside Coffee</strong><span>Thank-you email sent from your Gmail</span></span></div>
+      <div class="float float--b"><span class="badge">{{icon:repeat}}</span><span><strong>Daily site walk-through</strong><span>Repeats every day at 7:00 AM</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ribbon" aria-label="What HoneyTabs keeps together">
+  <ul class="wrap">
+    <li>{{icon:tag}} Sponsors</li><li>{{icon:listcheck}} To-dos</li><li>{{icon:calendar}} Calendar</li><li>{{icon:badge}} Crew</li><li>{{icon:receipt}} Costs</li><li>{{icon:file}} Files</li><li>{{icon:mail}} Email</li>
+  </ul>
+</section>
+
+<section class="section" id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Features</span>
+      <h2 id="features-title">Everything your event needs, in one hive</h2>
+      <p>Built around how organizers actually work, from the first sponsor call to the last box loaded out.</p>
+    </div>
+    <div class="bento">
+      <article class="fcard wide reveal">
+        <div class="hex">{{icon:calendar}}</div>
+        <h3><span class="kicker">Plan</span><br>Know what's next, every day</h3>
+        <p>Set up the event once and keep every to-do, checklist and file right where your team will look for it.</p>
+        <ul class="flist">
+          <li>{{icon:check}} Events with categories that fit how you run things</li>
+          <li>{{icon:check}} To-dos and repeating tasks on a calendar</li>
+          <li>{{icon:check}} Venue checklists you can reuse</li>
+          <li>{{icon:check}} PDF files attached to events, venues and sponsors</li>
+        </ul>
+      </article>
+      <article class="fcard wide reveal" style="--d:.08s">
+        <div class="hex">{{icon:tag}}</div>
+        <h3><span class="kicker">Sell sponsors</span><br>See every spot at a glance</h3>
+        <p>Track every sponsor from first call to signed, and see what's still open before you pick up the phone.</p>
+        <ul class="flist">
+          <li>{{icon:check}} Sponsor spots that gray out when they're sold</li>
+          <li>{{icon:check}} Contacts with tiers, like Gold, Silver and Bronze</li>
+          <li>{{icon:check}} A thank-you email ready the moment a spot sells</li>
+          <li>{{icon:check}} Notes, statuses and follow-ups in one place</li>
+        </ul>
+      </article>
+      <article class="fcard reveal">
+        <div class="hex">{{icon:clipboard}}</div>
+        <h3><span class="kicker">Run the day</span><br>Everything on hand</h3>
+        <ul class="flist">
+          <li>{{icon:check}} A production sheet for the whole day</li>
+          <li>{{icon:check}} Personnel, shifts and costs</li>
+          <li>{{icon:check}} Snap receipts and photos</li>
+          <li>{{icon:check}} Print photos, PDFs and sheets</li>
+        </ul>
+      </article>
+      <article class="fcard reveal" style="--d:.08s">
+        <div class="hex">{{icon:shield}}</div>
+        <h3><span class="kicker">Team and permissions</span><br>The right eyes on it</h3>
+        <ul class="flist">
+          <li>{{icon:check}} Invite your whole team</li>
+          <li>{{icon:check}} Choose who sees costs, files and contacts</li>
+          <li>{{icon:check}} Assign tasks to anyone</li>
+          <li>{{icon:check}} Your own brand colors</li>
+        </ul>
+      </article>
+      <article class="fcard fcard--google reveal" style="--d:.16s">
+        <div class="hex">{{icon:mail}}</div>
+        <h3><span class="kicker">Google email and calendar</span><br>Works with what you use</h3>
+        <ul class="flist">
+          <li>{{icon:check}} Send email from your own Gmail</li>
+          <li>{{icon:check}} Deadlines and tasks on Google Calendar</li>
+          <li>{{icon:check}} Event invites with yes, no and maybe</li>
+          <li>{{icon:check}} Never reads your inbox</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" aria-labelledby="spots-title">
+  <div class="wrap spot-grid">
+    <div class="spot-copy reveal">
+      <span class="eyebrow">Sell sponsors</span>
+      <h2 id="spots-title">Sold spots gray out. Open ones stand out.</h2>
+      <p>Lay out your banners, booths and stage spots the way you sell them. The second one sells, it locks and grays out, so nobody sells the same spot twice.</p>
+      <ul class="checks">
+        <li><span class="tick">{{icon:check}}</span><span><b>Sponsor groups and packages</b><span>Set up the spots and what each sponsor gets.</span></span></li>
+        <li><span class="tick">{{icon:check}}</span><span><b>Contacts with tiers</b><span>Keep Gold, Silver and Bronze sponsors sorted, with notes and follow-ups.</span></span></li>
+        <li><span class="tick">{{icon:check}}</span><span><b>A thank-you that writes itself</b><span>Mark a spot sold and HoneyTabs gets the email ready to send from your Gmail.</span></span></li>
+      </ul>
+    </div>
+    <div class="spot-media reveal" style="--d:.1s">
+      <div class="phone" role="img" aria-label="Sponsor spots screen: three of six main stage banners sold and grayed out"><div class="screen"><div class="ui">
+        <div class="ui-head"><small>Spring Community Festival</small><p class="t">Sponsor spots</p></div>
+        <div class="ui-body" style="padding-top:1cqw">
+          <div class="ui-card">
+            <b style="font-family:var(--serif);color:var(--ink);font-size:1.1em">Main stage banners</b>
+            <div class="big-num"><b>3</b><span>of 6 left</span><em>3 sold</em></div>
+            <div class="bar"><i style="--p:50%;background:var(--gold)"></i></div>
+            <div class="spots">
+              <div class="spot sold"><b>Banner 1 {{icon:lock}}</b><span>Lakeside Coffee</span><small>SOLD</small></div>
+              <div class="spot sold"><b>Banner 2 {{icon:lock}}</b><span>Northside Bank</span><small>SOLD</small></div>
+              <div class="spot open"><b>Banner 3 {{icon:plus}}</b><small>Open · assign</small></div>
+              <div class="spot sold"><b>Banner 4 {{icon:lock}}</b><span>Corner Print Shop</span><small>SOLD</small></div>
+              <div class="spot open"><b>Banner 5 {{icon:plus}}</b><small>Open · assign</small></div>
+              <div class="spot open"><b>Banner 6 {{icon:plus}}</b><small>Open · assign</small></div>
+            </div>
+          </div>
+          <div class="ui-card">
+            <b style="font-family:var(--serif);color:var(--ink);font-size:1.1em">Food court booths</b>
+            <div class="big-num" style="margin-top:1cqw"><b style="font-size:1.6em">5</b><span>of 8 left</span><em>3 sold</em></div>
+            <div class="bar"><i style="--p:37%;background:var(--gold)"></i></div>
+          </div>
+          <div class="ui-card" style="background:#F3EEE8">
+            <b style="font-family:var(--serif);color:#8B7B6C;font-size:1.1em;display:flex;justify-content:space-between;align-items:center">Presenting sponsor {{icon:lock}}</b>
+            <div style="font-size:.8em;font-weight:800;color:#6F6155;margin-top:1cqw">Sold to Riverside Credit Union</div>
+          </div>
+          <div class="toast">{{icon:send}}<span><b>Banner 4 sold to Corner Print Shop</b>Thank-you email is ready to send.</span></div>
+        </div>
+        <div class="ui-tabs"><div>{{icon:home}}Home</div><div>{{icon:users}}Contacts</div><div class="on">{{icon:grid}}Spots</div><div>{{icon:calendar}}Calendar</div><div>{{icon:more}}More</div></div>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="tasks-title">
+  <div class="wrap spot-grid flip">
+    <div class="spot-copy reveal">
+      <span class="eyebrow">Plan</span>
+      <h2 id="tasks-title">Daily tasks that take care of themselves</h2>
+      <p>Set a task once and let it repeat. Every day, weekdays, the days you pick, every few days or once a month. It shows up on the calendar and gets checked off one day at a time.</p>
+      <ul class="checks">
+        <li><span class="tick">{{icon:repeat}}</span><span><b>Repeat it your way</b><span>Daily walk-throughs, weekly sponsor calls, monthly board updates.</span></span></li>
+        <li><span class="tick">{{icon:users}}</span><span><b>Assign it to anyone</b><span>Everyone sees their own list, and you see the whole picture.</span></span></li>
+        <li><span class="tick">{{icon:calcheck}}</span><span><b>On your Google Calendar</b><span>Deadlines and to-dos land on your calendar and stay up to date.</span></span></li>
+      </ul>
+    </div>
+    <div class="spot-media reveal" style="--d:.1s">
+      <div class="phone" role="img" aria-label="Calendar screen with a week view and today's repeating tasks"><div class="screen"><div class="ui">
+        <div class="ui-head"><small>April 2027</small><p class="t">Calendar</p>
+          <div class="week">
+            <div class="one">Mon<b>12</b><i></i></div><div>Tue<b>13</b><i></i></div><div class="one">Wed<b>14</b><i></i></div><div class="today">Thu<b>15</b><i></i></div><div>Fri<b>16</b><i></i></div><div>Sat<b>17</b><i></i></div><div class="none">Sun<b>18</b><i></i></div>
+          </div>
+        </div>
+        <div class="ui-body">
+          <div class="ui-label">Thursday · 5 tasks</div>
+          <div class="ui-card">
+            <div class="ui-task"><span class="chk on"></span><span><span class="done">Daily site walk-through</span><br><small class="rep" style="color:var(--muted)">{{icon:repeat}} Every day</small></span><span class="av" style="--c:#9A5F07">SM</span></div>
+            <div class="ui-task"><span class="chk on"></span><span><span class="done">Restock water station</span><br><small class="rep" style="color:var(--muted)">{{icon:repeat}} Every 2 days</small></span><span class="av" style="--c:#7A5A3C">AK</span></div>
+            <div class="ui-task"><span class="chk"></span><span>Sponsor check-in calls<br><small class="rep" style="color:var(--muted)">{{icon:repeat}} Weekdays</small></span><span class="av" style="--c:#552E0B">JR</span></div>
+            <div class="ui-task"><span class="chk"></span><span>Confirm volunteer shifts<br><small class="rep" style="color:var(--muted)">{{icon:repeat}} Mon, Thu</small></span><span class="av" style="--c:#B4700F">TL</span></div>
+            <div class="ui-task"><span class="chk"></span><span>Send vendor map<br><small style="color:var(--muted)">Due today</small></span><span class="av" style="--c:#9A5F07">SM</span></div>
+          </div>
+          <div class="ui-label">Friday · 2 tasks</div>
+          <div class="ui-card">
+            <div class="ui-task"><span class="chk"></span><span>Daily site walk-through<br><small class="rep" style="color:var(--muted)">{{icon:repeat}} Every day</small></span><span class="av" style="--c:#9A5F07">SM</span></div>
+            <div class="ui-task"><span class="chk"></span><span>Pick up event banners<br><small style="color:var(--muted)">Due Friday</small></span><span class="av" style="--c:#552E0B">JR</span></div>
+          </div>
+        </div>
+        <div class="ui-tabs"><div>{{icon:home}}Home</div><div>{{icon:users}}Contacts</div><div>{{icon:grid}}Spots</div><div class="on">{{icon:calendar}}Calendar</div><div>{{icon:more}}More</div></div>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" aria-labelledby="google-title">
+  <div class="wrap spot-grid">
+    <div class="spot-copy reveal">
+      <span class="eyebrow">Google email and calendar</span>
+      <h2 id="google-title">Send from your Gmail. Keep your calendar in sync.</h2>
+      <p>Connect your Google account and HoneyTabs sends the emails you write from your own address, so replies come straight back to you. Your event dates and invites go on your Google Calendar, and you can see who said yes.</p>
+      <ul class="checks">
+        <li><span class="tick">{{icon:send}}</span><span><b>Your address, your voice</b><span>Sponsors and vendors see your name, not a no-reply address.</span></span></li>
+        <li><span class="tick">{{icon:calcheck}}</span><span><b>Invites with RSVPs</b><span>Send event invites and see yes, no and maybe right in the app.</span></span></li>
+      </ul>
+      <p class="note">{{icon:eyeoff}}<span><b>HoneyTabs never reads your inbox.</b> It can only send the email you write and update the calendar events it creates. You can disconnect any time. <a href="/privacy/#google">How we handle Google data</a></span></p>
+    </div>
+    <div class="spot-media reveal" style="--d:.1s">
+      <div class="gpanel" role="img" aria-label="A thank-you email being sent from Gmail and a Google Calendar event with RSVP counts">
+        <div class="gmail" aria-hidden="true">
+          <header>{{icon:mail}} New message <span style="margin-left:auto;font-weight:700;color:var(--muted);font-size:.82rem">via your Gmail</span></header>
+          <div class="f"><span>To</span>Corner Print Shop</div>
+          <div class="f"><span>Subject</span><b style="color:var(--ink)">Thank you for sponsoring the festival</b></div>
+          <div class="body">Hi Dana,<br><br>Thanks for taking Banner 4 at this year's Spring Community Festival. I'll send over the logo specs and load-in time this week.<br><br>Thanks,<br>Sam</div>
+          <footer><span>Sent from you, not a no-reply address</span><b>Send</b></footer>
+        </div>
+        <div class="gcal" aria-hidden="true">
+          <header>{{icon:calendar}} Google Calendar</header>
+          <div class="ev"><b>Volunteer kickoff</b><small>Thu, Apr 15 · 6:00 PM · Riverside Park</small></div>
+          <div class="rsvp"><div><b>18</b>Yes</div><div><b>3</b>Maybe</div><div><b>2</b>No</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 id="how-title">Up and running in an afternoon</h2>
+      <p>No training day. If your team can send a text, they can use HoneyTabs.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><h3>Set up your event</h3><p>Add the dates, the venue and your categories. Bring in your sponsor list and lay out your spots.</p></div>
+      <div class="step reveal" style="--d:.1s"><div class="num">2</div><h3>Bring in your team</h3><p>Invite your crew and choose what each person can see. Everyone works from the same plan.</p></div>
+      <div class="step reveal" style="--d:.2s"><div class="num">3</div><h3>Run the day</h3><p>Check off tasks, snap receipts and pull up the production sheet. Print it if you want it on paper.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="organizers" aria-labelledby="org-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Built for organizers</span>
+      <h2 id="org-title">If it has sponsors, a crew and a deadline, it fits</h2>
+      <p>HoneyTabs works for one big weekend a year or a full season of events.</p>
+    </div>
+    <div class="uses">
+      <div class="use reveal">{{icon:tent}}<h3>Festivals</h3><p>Stages, vendors, volunteers and a long list of sponsors.</p></div>
+      <div class="use reveal" style="--d:.06s">{{icon:heart}}<h3>Fundraisers</h3><p>Galas, auctions and benefit nights with tables and donors to track.</p></div>
+      <div class="use reveal" style="--d:.12s">{{icon:mic}}<h3>Conferences</h3><p>Speakers, booths, schedules and the files everyone needs.</p></div>
+      <div class="use reveal" style="--d:.18s">{{icon:ferris}}<h3>Fairs and expos</h3><p>Exhibitors, booth spots and a crew that changes every shift.</p></div>
+      <div class="use reveal" style="--d:.24s">{{icon:trophy}}<h3>Sports events</h3><p>Tournaments, races and games with sponsors, staff and a tight schedule.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div class="section-head reveal" style="margin:0">
+      <span class="eyebrow">FAQ</span>
+      <h2 id="faq-title">Good questions</h2>
+      <p>Don't see yours? Email <a href="mailto:{{email}}">{{email}}</a> and we'll get back to you.</p>
+    </div>
+    <div class="faq reveal" style="--d:.08s">
+      <details><summary>When can I get HoneyTabs?<span class="pm">{{icon:plus}}</span></summary><div class="ans"><p>We're finishing testing now. HoneyTabs is coming soon to the App Store and Google Play. Email <a href="mailto:{{email}}?subject=HoneyTabs%20early%20access">{{email}}</a> and we'll let you know the day it's ready, or get you in early.</p></div></details>
+      <details><summary>Does it work on iPhone and Android?<span class="pm">{{icon:plus}}</span></summary><div class="ans"><p>Yes, both. Your team can use whatever phone they already have, and everyone sees the same plan. A version that runs in your web browser is in the works too.</p></div></details>
+      <details><summary>Does HoneyTabs read my email?<span class="pm">{{icon:plus}}</span></summary><div class="ans"><p>No. When you connect Google, HoneyTabs can only send email you write and keep its own events on your calendar up to date. It can't open your inbox. <a href="/privacy/#google">Read how we handle Google data.</a></p></div></details>
+      <details><summary>Can I choose what my team sees?<span class="pm">{{icon:plus}}</span></summary><div class="ans"><p>Yes. Team permissions let you decide who sees costs, files, contacts and more. A volunteer can see their tasks without seeing the budget.</p></div></details>
+      <details><summary>Can it match our colors?<span class="pm">{{icon:plus}}</span></summary><div class="ans"><p>Yes. Pick your organization's brand color and the app uses it for your team.</p></div></details>
+      <details><summary>Can I print from the app?<span class="pm">{{icon:plus}}</span></summary><div class="ans"><p>Yes. Print photos, PDFs and the production sheet to any printer your phone can reach.</p></div></details>
+      <details><summary>Is my data sold or used for ads?<span class="pm">{{icon:plus}}</span></summary><div class="ans"><p>Never. There are no ads and no tracking in HoneyTabs. Your event data belongs to your team. See our <a href="/privacy/">Privacy Policy</a>.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta" aria-labelledby="cta-title">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div>
+        <span class="script">Made for the busy bee</span>
+        <h2 id="cta-title">Ready when your next event is</h2>
+        <p>HoneyTabs is coming soon to the App Store and Google Play. Send us a quick note and we'll get you in early.</p>
+        <div class="cta-actions"><a class="btn btn--honey" href="mailto:{{email}}?subject=HoneyTabs%20early%20access">Get early access {{icon:arrow}}</a><small>{{email}}</small></div>
+      </div>
+      <div class="cta-art"><picture><source srcset="/assets/img/app-icon-256.avif" type="image/avif"><source srcset="/assets/img/app-icon-256.webp" type="image/webp"><img src="/assets/img/app-icon-256.png" alt="HoneyTabs app icon" width="200" height="200" loading="lazy"></picture></div>
+    </div>
+  </div>
+</section>
+</main>

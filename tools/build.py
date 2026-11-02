@@ -1,0 +1,163 @@
+#!/usr/bin/env python3
+"""Tiny build: stamps the shared <head>, header, icon sprite and footer onto each
+page body in tools/pages/ and writes static HTML to the site root.
+Run:  python3 tools/build.py      (no dependencies)
+Edit page content in tools/pages/*.html, shared parts below. Commit the output."""
+import pathlib, re
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+SITE = "https://honeytabs.com"
+EMAIL = "hello@honeytabs.com"
+YEAR = "2026"
+ADDRESS = "PO Box 104, McAlester, OK 74502"
+
+ICONS = {
+ "arrow": '<path d="M5 12h14M13 6l6 6-6 6"/>',
+ "check": '<path d="M20 6 9 17l-5-5"/>',
+ "plus": '<path d="M12 5v14M5 12h14"/>',
+ "menu": '<path d="M4 7h16M4 12h16M4 17h16"/>',
+ "close": '<path d="M18 6 6 18M6 6l12 12"/>',
+ "calendar": '<rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/>',
+ "calcheck": '<rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M16 2.5v4M8 2.5v4M3 10h18M9 15.5l2 2 4-4"/>',
+ "grid": '<rect x="3" y="3" width="7.5" height="7.5" rx="1.8"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.8"/>',
+ "tag": '<path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4Z"/><circle cx="7.5" cy="7.5" r="1.3"/>',
+ "lock": '<rect x="4" y="11" width="16" height="10.5" rx="2.2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>',
+ "users": '<path d="M16 21v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V21"/><circle cx="9" cy="7.5" r="3.8"/><path d="M22 21v-1.5a4 4 0 0 0-3-3.9M16 3.6a3.8 3.8 0 0 1 0 7.4"/>',
+ "star": '<path d="m12 2.8 2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.4l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9Z"/>',
+ "listcheck": '<path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/>',
+ "repeat": '<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>',
+ "coins": '<circle cx="9" cy="9" r="6.5"/><path d="M18.1 10.4A6.5 6.5 0 1 1 10.4 18.1M8 7h1.5v4"/>',
+ "clipboard": '<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M8.5 11.5h7M8.5 15.5h7M8.5 19h4"/>',
+ "pin": '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+ "receipt": '<path d="M5 2.5v19l2.3-1.4 2.3 1.4 2.4-1.4 2.4 1.4 2.3-1.4 2.3 1.4v-19l-2.3 1.4-2.3-1.4L12 3.9 9.6 2.5 7.3 3.9Z"/><path d="M9 8.5h6M9 12h6M9 15.5h3.5"/>',
+ "camera": '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z"/><circle cx="12" cy="13" r="3.5"/>',
+ "file": '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5Z"/><path d="M14 2v6h6M8.5 13.5h7M8.5 17h5"/>',
+ "printer": '<path d="M6 9V2.5h12V9M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/>',
+ "shield": '<path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>',
+ "palette": '<path d="M12 22a10 10 0 1 1 10-10c0 2.5-2 4-4.5 4H15a2 2 0 0 0-1.5 3.3A1.7 1.7 0 0 1 12 22Z"/><circle cx="7.5" cy="11" r="1.1"/><circle cx="10.5" cy="7" r="1.1"/><circle cx="15.5" cy="7.5" r="1.1"/>',
+ "mail": '<rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m22 7-10 6.5L2 7"/>',
+ "send": '<path d="M22 2 11 13M22 2l-7 20-4-9-9-4Z"/>',
+ "bell": '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/>',
+ "eyeoff": '<path d="M9.9 9.9a3 3 0 1 0 4.2 4.2M10.7 5.1A10.4 10.4 0 0 1 12 5c7 0 10 7 10 7a13 13 0 0 1-1.7 2.7M6.6 6.6A13.5 13.5 0 0 0 2 12s3 7 10 7a9.7 9.7 0 0 0 5.4-1.6M2 2l20 20"/>',
+ "badge": '<rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10.5" r="2.2"/><path d="M5.8 16.5c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4M14.5 9.5h3.5M14.5 13.5h2.5"/>',
+ "tent": '<path d="M3.5 21 12 4l8.5 17M2 21h20M12 21v-6l-3.5 6M12 15l3.5 6"/><path d="M12 4V2"/>',
+ "heart": '<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/>',
+ "mic": '<path d="M2.5 3h19M20.5 3v10.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V3M9 15.5 6.5 21M15 15.5l2.5 5.5M8 11l3-3 2.5 2.5L17 7"/>',
+ "ferris": '<circle cx="12" cy="10" r="7"/><circle cx="12" cy="10" r="1.6"/><path d="M12 3v5.4M12 11.6V17M5 10h5.4M13.6 10H19M7 5l3.8 3.8M13.2 11.2 17 15M17 5l-3.8 3.8M10.8 11.2 7 15M8.5 22 12 17l3.5 5M6.5 22h11"/>',
+ "trophy": '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17c0 .6-.5 1-1 1.2C7.9 18.8 7 20.2 7 22M14 14.7V17c0 .6.5 1 1 1.2 1.1.6 2 2 2 3.8M18 2H6v7a6 6 0 0 0 12 0Z"/>',
+ "home": '<path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 20Z"/>',
+ "more": '<circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/>',
+ "useradd": '<path d="M15 21v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V21"/><circle cx="8.5" cy="7.5" r="3.8"/><path d="M19 8v6M22 11h-6"/>',
+ "help": '<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/>',
+ "trash": '<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/>',
+ "unlink": '<path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 0 1 4 8M8 12h3M2 2l20 20"/>',
+}
+SPRITE = '<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">' + "".join(
+    f'<symbol id="i-{k}" viewBox="0 0 24 24">{v}</symbol>' for k, v in ICONS.items()) + "</svg>"
+
+def icon(name, cls="ico"):
+    return f'<svg class="{cls}" aria-hidden="true" focusable="false"><use href="#i-{name}"/></svg>'
+
+HEAD = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<link rel="canonical" href="{url}">
+<meta name="theme-color" content="#E28B0A">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="{robots}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HoneyTabs">
+<meta property="og:title" content="{ogtitle}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{site}/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HoneyTabs logo, made for the busy bee">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{ogtitle}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{site}/assets/img/og-image.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon-180.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v={ver}">
+<script>document.documentElement.classList.add('js')</script>
+{jsonld}</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+"""
+
+NAV = [("Features", "/#features"), ("How it works", "/#how"), ("Who it's for", "/#organizers"), ("FAQ", "/#faq"), ("Support", "/support/")]
+
+def header(current):
+    links = "".join(
+        f'<li><a href="{h}"{" aria-current=\"page\"" if h == current else ""}>{t}</a></li>' for t, h in NAV)
+    return f"""<header class="site-header">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="/" aria-label="HoneyTabs home"><img src="/assets/img/logo-notag.svg" alt="HoneyTabs" width="1464" height="524"></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    <div class="nav-menu" id="nav-menu">
+      <ul class="nav-links">{links}<li class="nav-cta"><a class="btn btn--sm" href="mailto:{EMAIL}?subject=HoneyTabs%20early%20access">Get early access</a></li></ul>
+    </div>
+  </nav>
+</header>
+"""
+
+FOOTER = f"""<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="/assets/img/logo-dark.svg" alt="HoneyTabs, made for the busy bee" width="1464" height="606" loading="lazy">
+        <p>One app for your sponsors, to-dos, crew, costs and files, so your team always knows what's next.</p>
+        <p>Coming soon to the App Store and Google Play.</p>
+      </div>
+      <div><h2>Product</h2><ul><li><a href="/#features">Features</a></li><li><a href="/#how">How it works</a></li><li><a href="/#organizers">Who it's for</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
+      <div><h2>Help</h2><ul><li><a href="/support/">Support</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="mailto:{EMAIL}?subject=HoneyTabs%20early%20access">Get early access</a></li></ul></div>
+      <div><h2>Legal</h2><ul><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Use</a></li><li><a href="/privacy/#google">Google user data</a></li></ul></div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; {YEAR} HoneyTabs</span>
+      <address>{ADDRESS}</address>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v={{ver}}" defer></script>
+</body>
+</html>
+"""
+
+JSONLD = """<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HoneyTabs","applicationCategory":"BusinessApplication","operatingSystem":"iOS, Android","description":"Event-management app for organizers: sponsors, to-dos, crew, costs, files and Google Calendar in one place.","url":"https://honeytabs.com/","publisher":{"@type":"Organization","name":"HoneyTabs","email":"hello@honeytabs.com","address":{"@type":"PostalAddress","postOfficeBoxNumber":"104","addressLocality":"McAlester","addressRegion":"OK","postalCode":"74502","addressCountry":"US"}}}</script>
+"""
+
+def build():
+    import hashlib
+    css = (ROOT / "assets/css/site.css").read_bytes() + (ROOT / "assets/js/site.js").read_bytes()
+    ver = hashlib.sha1(css).hexdigest()[:8]
+    for src in sorted((ROOT / "tools/pages").glob("*.html")):
+        raw = src.read_text()
+        meta, body = raw.split("\n---\n", 1)
+        m = dict(l.split(": ", 1) for l in meta.strip().splitlines())
+        path = m["path"]
+        body = re.sub(r"\{\{icon:([a-z]+)\}\}", lambda x: icon(x.group(1)), body)
+        body = body.replace("{{email}}", EMAIL).replace("{{address}}", ADDRESS)
+        html = HEAD.format(title=m["title"], ogtitle=m.get("ogtitle", m["title"]), desc=m["desc"], url=SITE + path,
+                           site=SITE, ver=ver, robots=m.get("robots", "index,follow"),
+                           jsonld=JSONLD if path == "/" else "")
+        html += SPRITE + "\n" + header(m.get("nav", "")) + body + FOOTER.replace("{ver}", ver)
+        out = ROOT / (m["out"])
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(html)
+        print("wrote", out.relative_to(ROOT))
+
+if __name__ == "__main__":
+    build()

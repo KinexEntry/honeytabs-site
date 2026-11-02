@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://honeytabs.com/sitemap.xml

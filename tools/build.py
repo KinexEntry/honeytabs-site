@@ -50,6 +50,9 @@ ICONS = {
  "useradd": '<path d="M15 21v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V21"/><circle cx="8.5" cy="7.5" r="3.8"/><path d="M19 8v6M22 11h-6"/>',
  "help": '<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/>',
  "trash": '<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/>',
+ "gift": '<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',
+ "phone": '<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/>',
+ "copy": '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/>',
  "unlink": '<path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 0 1 4 8M8 12h3M2 2l20 20"/>',
 }
 SPRITE = '<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">' + "".join(
@@ -141,7 +144,7 @@ JSONLD = """<script type="application/ld+json">{"@context":"https://schema.org",
 
 def build():
     import hashlib
-    css = (ROOT / "assets/css/site.css").read_bytes() + (ROOT / "assets/js/site.js").read_bytes()
+    css = b"".join((ROOT / f).read_bytes() for f in ("assets/css/site.css", "assets/js/site.js", "assets/js/referral.js"))
     ver = hashlib.sha1(css).hexdigest()[:8]
     for src in sorted((ROOT / "tools/pages").glob("*.html")):
         raw = src.read_text()
@@ -153,7 +156,10 @@ def build():
         html = HEAD.format(title=m["title"], ogtitle=m.get("ogtitle", m["title"]), desc=m["desc"], url=SITE + path,
                            site=SITE, ver=ver, robots=m.get("robots", "index,follow"),
                            jsonld=JSONLD if path == "/" else "")
-        html += SPRITE + "\n" + header(m.get("nav", "")) + body + FOOTER.replace("{ver}", ver)
+        foot = FOOTER.replace("{ver}", ver)
+        if m.get("script"):
+            foot = foot.replace("</body>", f'<script src="{m["script"]}?v={ver}" defer></script>\n</body>')
+        html += SPRITE + "\n" + header(m.get("nav", "")) + body + foot
         out = ROOT / (m["out"])
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(html)

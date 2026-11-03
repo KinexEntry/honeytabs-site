@@ -4,6 +4,13 @@ path: /404.html
 out: 404.html
 robots: noindex
 ---
+<script>
+// Referral links: honeytabs.com/r/<code> has no file on GitHub Pages, so it lands here. Send it to /r/?code=<code>.
+(function () {
+  var m = location.pathname.match(/^\/r\/([A-Za-z0-9-]{4,20})\/?$/);
+  if (m) location.replace('/r/?code=' + encodeURIComponent(m[1].toUpperCase()));
+})();
+</script>
 <main id="main">
 <section class="page-hero" style="border:0;padding:6rem 0 7rem;text-align:center">
   <div class="wrap">

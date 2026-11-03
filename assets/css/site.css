@@ -417,3 +417,34 @@ p{margin:0 0 1em}
 @media (max-width:400px){ .uses{grid-template-columns:1fr} }
 
 .ui-card>b>.ico{width:4.6cqw;height:4.6cqw}
+
+/* Referral invite (/r/) */
+.ref-hero{position:relative;padding:3.5rem 0 5rem;background:radial-gradient(120% 70% at 50% 0,var(--honey-light),transparent 70%)}
+.ref-hero::before{content:"";position:absolute;inset:0;background:var(--comb);background-size:60px 103.92px;opacity:.09;pointer-events:none;mask-image:linear-gradient(#000,transparent 75%);-webkit-mask-image:linear-gradient(#000,transparent 75%)}
+.ref-wrap{position:relative;display:grid;place-items:center}
+.ref-card{width:min(100%,640px);background:var(--paper);border:1px solid var(--line);border-radius:calc(var(--radius) + 6px);box-shadow:var(--shadow-lg);padding:2.75rem 2.5rem 2.25rem;text-align:center}
+.ref-gift{width:76px;height:84px;margin:0 auto 1rem;display:grid;place-items:center;background:linear-gradient(160deg,#FFD58C,var(--honey));color:var(--brown);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.ref-gift .ico{width:34px;height:34px}
+.ref-card h1{font-size:clamp(2rem,4.6vw,2.9rem);margin-bottom:.45em}
+.ref-card h1 .script{font-size:1.08em}
+.ref-lead{font-size:1.2rem;color:var(--text);max-width:30em;margin:0 auto 1.6rem}
+.ref-lead strong{color:var(--ink)}
+.ref-code{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5rem 1rem;margin:0 auto 1.75rem;padding:1rem 1.25rem;border:2px dashed rgba(226,139,10,.55);border-radius:18px;background:var(--cream)}
+.ref-code[hidden],.ref-missing[hidden],[data-ref-open][hidden]{display:none}
+.ref-code-label{width:100%;font-size:.85rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.ref-code-value{font:800 2.1rem/1 var(--sans);letter-spacing:.22em;color:var(--brown);padding-left:.22em}
+.ref-missing{color:var(--muted);margin-bottom:1.5rem}
+.ref-actions{display:grid;gap:.85rem;justify-items:center;margin-bottom:2rem}
+.ref-stores{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.ref-web{display:inline-flex;align-items:center;gap:.4rem;font-weight:800;text-decoration:none}
+.ref-steps{list-style:none;margin:0 0 1.25rem;padding:1.5rem 0 0;border-top:1px solid var(--line);display:grid;gap:.85rem;text-align:left}
+.ref-steps li{display:flex;gap:.85rem;align-items:flex-start}
+.ref-steps b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--brown);color:var(--honey);font-size:.9rem}
+.ref-fine{font-size:.88rem;color:var(--muted);margin:0}
+@media (max-width:560px){
+  .ref-hero{padding:1.5rem 0 3rem}
+  .ref-card{padding:2rem 1.25rem 1.75rem;border-radius:var(--radius)}
+  .ref-actions .btn{width:100%;justify-content:center}
+  .ref-stores{width:100%;flex-direction:column}
+  .ref-code-value{font-size:1.75rem}
+}

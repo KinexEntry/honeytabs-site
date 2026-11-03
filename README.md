@@ -7,6 +7,7 @@ Static marketing site for HoneyTabs (made for the busy bee). Plain HTML, CSS and
 - `/privacy/`: Privacy Policy, including the Google API Services / Limited Use section (`/privacy/#google`)
 - `/terms/`: Terms of Use
 - `/support/`: Support and contact (hello@honeytabs.com)
+- `/r/`: referral invite page (`/r/?code=<code>`). `honeytabs.com/r/<code>` has no file, so `404.html` redirects it to `/r/?code=<code>`. `assets/js/referral.js` shows the code, saves it to `localStorage` (`referral:pending_code`, the same key the app uses on web), and opens the app (`eventdesk://r/<code>`; Android uses an intent URL that falls back to Google Play).
 - `404.html`: not-found page
 
 ## Editing
